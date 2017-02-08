@@ -8,7 +8,7 @@
  * linying@yiji.com 2017/2/7 19:46 创建
  *
  */
-package com.cly.learn.biz.thread;
+package com.cly.learn.biz.thread.semaphore;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,9 +19,9 @@ import java.util.concurrent.Semaphore;
  *
  * @author linying@yiji.com
  */
-public class SemaphoreTest {
+public class TestSemaphore {
 
-    public static void main(String[] args) {
+    public static void main(String args[]){
         // 创建线程池
         ExecutorService pool = Executors.newCachedThreadPool();
         // 只能5个线程同时访问
@@ -38,7 +38,7 @@ public class SemaphoreTest {
                         Thread.sleep((long) (Math.random() * 10000));
                         // 访问完后，释放 ，如果屏蔽下面的语句，则在控制台只能打印5条记录，之后线程一直阻塞
                         semp.release();
-                    }catch (InterruptedException e){
+                    }catch (InterruptedException ignored){
                     }
                 }
             };
@@ -47,4 +47,5 @@ public class SemaphoreTest {
         // 退出线程池
         pool.shutdown();
     }
+
 }
